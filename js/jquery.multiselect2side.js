@@ -52,6 +52,7 @@
 					el.data('multiselect2side', o);
 
 				var	originalName = $(this).attr("name");
+				if (!originalName) originalName = "";
 				if (originalName.indexOf('[') != -1)
 					originalName = originalName.substring(0, originalName.indexOf('['));
 
@@ -112,7 +113,7 @@
 							((o.labelsx || leftSearch != false) ? ("<div class='ms2side__header'>" + (leftSearch != false ? leftSearch : o.labelsx) + "</div>") : "") +
 							"<select title='" + o.labelsx + "' name='" + nameSx + "' id='" + nameSx + "' size='" + size + "' multiple='multiple' ></select>" +
 						"</div>" +
-						"<div class='ms2side__options'>" +
+						"<div class='ms2side__options'><div class='ms2side__header'></div>" +
 							((o.selectedPosition == 'right')
 							?
 							("<p class='AddOne' title='Add Selected'>&rsaquo;</p>" +
@@ -272,7 +273,8 @@
 				$(this).find("option:not(:selected)").clone().appendTo(leftSel);
 
 				// SELECT FIRST LEFT ITEM AND DESELECT IN RIGHT (NOT IN IE6)
-				if (!($.browser.msie && $.browser.version == '6.0')) {
+			    //if (!($.browser.msie && $.browser.version == '6.0')) 
+				{
 					leftSel.find("option").eq(0).attr("selected", true);
 					rightSel.children().removeAttr("selected");
 				}
